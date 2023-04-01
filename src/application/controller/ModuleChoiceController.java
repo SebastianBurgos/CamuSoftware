@@ -30,12 +30,12 @@ public class ModuleChoiceController {
 
     @FXML
     void ingresar(ActionEvent event) {
-
+    	aplicacion.showLogin();
     }
 
     @FXML
     void ingresarModuloPQRS(ActionEvent event) {
-
+    	aplicacion.showRegister();
     }
 
     @FXML

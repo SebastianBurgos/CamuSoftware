@@ -6,6 +6,7 @@ import application.controller.ModuleChoiceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -19,13 +20,33 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Camu Software");
-//        this.primaryStage.getIcons().add( new Image("") );
 
+        cargarIcono();
         initRootLayout();
         showModuleChoice();
     }
 
+	/**
+	 * Returns the main stage.
+	 * @return
+	 */
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     /**
+     * Metodo que muestra el icono en la ventana que se este mostrando
+     */
+    private void cargarIcono() {
+    	Image logoImage = new Image(getClass().getResource("view/images/logo.png").toExternalForm());
+        this.primaryStage.getIcons().add(logoImage);
+	}
+
+	/**
      * Inicializa el layout raiz.
      */
     public void initRootLayout() {
@@ -65,15 +86,18 @@ public class MainApp extends Application {
         }
     }
 
-	/**
-	 * Returns the main stage.
-	 * @return
-	 */
-	public Stage getPrimaryStage() {
-		return primaryStage;
+    /**
+     * Metodo para abrir la ventana de login
+     */
+	public void showLogin() {
+
 	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	/**
+	 * Metodo para abrir la ventana de registro
+	 */
+	public void showRegister() {
+		// TODO Auto-generated method stub
+
+	}
 }
