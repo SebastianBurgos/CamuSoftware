@@ -1,5 +1,7 @@
 CREATE DATABASE camu_soporte;
 
+USE camu_soporte;
+
 CREATE TABLE `Usuario` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(50) NOT NULL,

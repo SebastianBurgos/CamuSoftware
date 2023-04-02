@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import application.controller.ModuleChoiceController;
+import application.model.Constructora;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private Constructora constructora = new Constructora();
 
     @Override
     public void start(Stage primaryStage) {
