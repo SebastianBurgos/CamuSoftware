@@ -222,4 +222,4 @@ insert into plataforma (id, nombre) values (3, "Escritorio");
 insert into tipopqrs (id, nombre, descripcion) values (1, "Peticion", "solicitar información o servicios.");
 insert into tipopqrs (id, nombre, descripcion) values (2, "Queja", "expresar insatisfacción o mal servicio.");
 insert into tipopqrs (id, nombre, descripcion) values (3, "Reclamo", "exigir corrección o indemnización por daños.");
-insert into tipopqrs (id, nombre, descripcion) values (4, "Sugerencia", "proponer mejoras o cambios.");	
+insert into tipopqrs (id, nombre, descripcion) values (4, "Sugerencia", "proponer mejoras o cambios.");
