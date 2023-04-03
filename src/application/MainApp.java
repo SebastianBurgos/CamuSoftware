@@ -1,9 +1,13 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import application.controller.ModuleChoiceController;
-import application.model.Constructora;
+import application.model.Implementacion;
+import application.model.Soporte;
+import application.services.ImplementacionService;
+import application.services.SoporteAsignadoService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +20,6 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private Constructora constructora = new Constructora();
 
     @Override
     public void start(Stage primaryStage) {
@@ -101,6 +104,19 @@ public class MainApp extends Application {
 	public void showRegister() {
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * Metodo para obtener la lista de osportes asignados a un desarrollador segun su id
+	 * @param id_desarrollador
+	 * @return
+	 */
+	public ArrayList<Soporte> listaSoportesAsignados(int id_desarrollador){
+		return SoporteAsignadoService.listaSoportesAsignados(id_desarrollador);
+	}
+
+	public ArrayList<Implementacion> listaImplementacionesSoporte(int id_soporte){
+		return ImplementacionService.listaImplementacionesSoporte(id_soporte);
 	}
 
 }

@@ -1,6 +1,7 @@
 package application.persistence.test;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,6 +35,40 @@ public class ConnectionTest {
 
 				Usuario newUser = new Usuario(id, nombre, apellidos, cedula, telefono, email, direccion, ciudadResidencia, password);
 				System.out.println(newUser);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (rset != null) {
+					rset.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (conexion != null) {
+					conexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		try {
+			conexion = conector.conectar();
+			stm = conexion.createStatement();
+			rset = stm.executeQuery("SELECT * FROM SOPORTE S WHERE S.ID = "+2);
+
+			//Recorrer todos los datos obtenidos de la sentencia SQL
+			while (rset.next()) {
+				Date fecha_creacion = rset.getDate(5);
+
+				System.out.println(fecha_creacion);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
