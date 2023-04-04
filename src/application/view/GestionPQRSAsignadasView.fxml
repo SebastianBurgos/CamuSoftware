@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.GestionPQRSAsignadasController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.GestionPQRSAsignadasController">
    <children>
       <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="472.0" prefWidth="676.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
          <top>
@@ -20,17 +19,21 @@
             </AnchorPane>
          </top>
          <left>
-            <AnchorPane prefHeight="284.0" prefWidth="280.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="257.0" prefWidth="280.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableSoporteAsignado" layoutX="40.0" layoutY="41.0" prefHeight="285.0" prefWidth="280.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="columnIdSoporte" prefWidth="25.0" text="id" />
-                      <TableColumn fx:id="columnEstadoSoporte" prefWidth="103.0" text="estado" />
-                        <TableColumn fx:id="columnDetallesSoporte" prefWidth="97.0" text="detalles" />
-                        <TableColumn fx:id="columnAsuntoSoporte" prefWidth="75.0" text="asunto" />
-                        <TableColumn prefWidth="75.0" text="fecha_solicitud" />
-                    </columns>
-                  </TableView>
+                  <Pane>
+                     <children>
+                        <TableView fx:id="tableSoporteAsignado" prefHeight="260.0" prefWidth="280.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="columnIdSoporte" prefWidth="46.0" text="id" />
+                            <TableColumn fx:id="columnEstadoSoporte" prefWidth="103.0" text="estado" />
+                              <TableColumn fx:id="columnFechaSolicitudSoporte" prefWidth="92.0" text="fecha_solicitud" />
+                              <TableColumn fx:id="columnUltimaActualizacionSoporte" prefWidth="142.0" text="fecha_ultima_actualizacion" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+                  <Button layoutX="70.0" layoutY="267.0" mnemonicParsing="false" onAction="#abrirPQRSSeleccionada" text="Abrir PQRS Seleccionada" />
                </children>
             </AnchorPane>
          </left>
@@ -83,7 +86,7 @@
          <bottom>
             <BorderPane prefHeight="141.0" prefWidth="676.0" BorderPane.alignment="CENTER">
                <top>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="676.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="676.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label layoutX="277.0" layoutY="3.0" text="Soporte" />
                         <Label layoutX="14.0" layoutY="26.0" text="Respuesta:" />

@@ -35,7 +35,9 @@ public class ModuleChoiceController {
 
     @FXML
     void ingresarModuloPQRS(ActionEvent event) {
+    	//COMENTAR ESTA SI QUIEREN MOSTRAR LAS OTRAS VIEW DE LA MISMA MANERA
     	aplicacion.showGestionPQRSAsignadas();
+    	//POR EJEMPLO PONER: aplicacion.showAsignacionPQRS();
     }
 
     @FXML

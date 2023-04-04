@@ -3,12 +3,19 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import application.controller.DetallePQRSController;
 import application.controller.GestionPQRSAsignadasController;
 import application.controller.ModuleChoiceController;
+import application.model.PQRS;
 import application.model.Implementacion;
+import application.model.Modulo;
+import application.model.Plataforma;
 import application.model.Soporte;
+import application.model.TipoPQRS;
+import application.model.Usuario;
 import application.services.ImplementacionService;
 import application.services.SoporteAsignadoService;
+import application.services.SoporteService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -116,16 +123,42 @@ public class MainApp extends Application {
             // Carga del fxml de eleccion de modulo.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/GestionPQRSAsignadasView.fxml"));
-            AnchorPane login = (AnchorPane) loader.load();
+            AnchorPane gestionPQRS = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            primaryStage.setMinHeight(580);
+            primaryStage.setMinHeight(530);
             primaryStage.setMinWidth(720);
-            rootLayout.setCenter(login);
+            rootLayout.setCenter(gestionPQRS);
 
             // Give the controller access to the main app.
             GestionPQRSAsignadasController controller = loader.getController();
             controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+
+	public void showDetallePQRS(int idSoporte){
+
+		try {
+            // Carga del fxml de eleccion de modulo.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/DetallePQRSView.fxml"));
+            AnchorPane detallePQRS = (AnchorPane) loader.load();
+
+    		// Create the dialog Stage.
+    		Stage dialogStage = new Stage();
+    		dialogStage.setTitle("Edit Person");
+    		dialogStage.getIcons().add( new Image(getClass().getResource("view/images/logo.png").toExternalForm()) );
+    		dialogStage.initOwner(primaryStage);
+    		Scene scene = new Scene(detallePQRS);
+    		dialogStage.setScene(scene);
+
+            // Give the controller access to the main app.
+            DetallePQRSController controller = loader.getController();
+            controller.setMainApp(this, idSoporte);
+
+            dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -142,6 +175,26 @@ public class MainApp extends Application {
 
 	public ArrayList<Implementacion> listaImplementacionesSoporte(int id_soporte){
 		return ImplementacionService.listaImplementacionesSoporte(id_soporte);
+	}
+
+	public Usuario obtenerUsuarioSoporte(int idSoporte) {
+		return SoporteService.obtenerUsuario(idSoporte);
+	}
+
+	public Plataforma obtenerPlataformaSoporte(int idSoporte) {
+		return SoporteService.obtenerPlataforma(idSoporte);
+	}
+
+	public Modulo obtenerModuloSoporte(int idSoporte) {
+		return SoporteService.obtenerModulo(idSoporte);
+	}
+
+	public TipoPQRS obtenerTipoPQRSSoporte(int idSoporte) {
+		return SoporteService.obtenerTipoPQRS(idSoporte);
+	}
+
+	public PQRS obtenerPQRSSoporte(int idSoporte) {
+		return SoporteService.obtenerPQRSSoporte(idSoporte);
 	}
 
 }

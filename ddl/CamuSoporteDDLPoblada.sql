@@ -223,3 +223,21 @@ insert into tipopqrs (id, nombre, descripcion) values (1, "Peticion", "solicitar
 insert into tipopqrs (id, nombre, descripcion) values (2, "Queja", "expresar insatisfacción o mal servicio.");
 insert into tipopqrs (id, nombre, descripcion) values (3, "Reclamo", "exigir corrección o indemnización por daños.");
 insert into tipopqrs (id, nombre, descripcion) values (4, "Sugerencia", "proponer mejoras o cambios.");
+
+insert into pqrs (id, id_usuario, id_plataforma, id_modulo, id_tipo, detalles, asunto, fecha_solicitud, estado) values (0, 17, 1, 3, 4, 'Vincent & Theo', 'Haggis', '2022/03/27', 'Nuevo');
+insert into pqrs (id, id_usuario, id_plataforma, id_modulo, id_tipo, detalles, asunto, fecha_solicitud, estado) values (0, 7, 3, 3, 1, 'Satan''s Little Helper', 'Wine - Hardys Bankside Shiraz', '2022/08/23', 'Nuevo');
+insert into pqrs (id, id_usuario, id_plataforma, id_modulo, id_tipo, detalles, asunto, fecha_solicitud, estado) values (0, 10, 1, 3, 2, 'Closure', 'Orange - Tangerine', '2022/09/30', 'Nuevo');
+insert into pqrs (id, id_usuario, id_plataforma, id_modulo, id_tipo, detalles, asunto, fecha_solicitud, estado) values (0, 7, 3, 2, 3, 'Graduation Day', 'Olives - Kalamata', '2022/10/09', 'Nuevo');
+insert into pqrs (id, id_usuario, id_plataforma, id_modulo, id_tipo, detalles, asunto, fecha_solicitud, estado) values (0, 13, 2, 2, 2, 'Fantasia 2000', 'Pasta - Canelloni', '2022/08/19', 'Nuevo');
+
+insert into soporte (id, id_pqrs, estado, tipo, fecha_creacion, fecha_ultima_actualizacion, tiempo_respuesta, observaciones, respuesta) values (0, 1, 'Soporte Asignado', 'Urgente', '2022/08/05', '2022/08/05', DEFAULT, DEFAULT, DEFAULT);
+insert into soporte (id, id_pqrs, estado, tipo, fecha_creacion, fecha_ultima_actualizacion, tiempo_respuesta, observaciones, respuesta) values (0, 2, 'Soporte Asignado', 'Urgente', '2022/06/08', '2022/06/08', DEFAULT, DEFAULT, DEFAULT);
+insert into soporte (id, id_pqrs, estado, tipo, fecha_creacion, fecha_ultima_actualizacion, tiempo_respuesta, observaciones, respuesta) values (0, 3, 'Soporte Asignado', 'Urgente', '2022/03/05', '2022/03/05', DEFAULT, DEFAULT, DEFAULT);
+insert into soporte (id, id_pqrs, estado, tipo, fecha_creacion, fecha_ultima_actualizacion, tiempo_respuesta, observaciones, respuesta) values (0, 4, 'Soporte Asignado', 'Urgente', '2022/10/08', '2022/10/08', DEFAULT, DEFAULT, DEFAULT);
+insert into soporte (id, id_pqrs, estado, tipo, fecha_creacion, fecha_ultima_actualizacion, tiempo_respuesta, observaciones, respuesta) values (0, 5, 'Soporte Asignado', 'Urgente', '2022/06/30', '2022/06/30', DEFAULT, DEFAULT, DEFAULT);
+
+insert into soporteasignado (id, id_desarrollador, id_soporte) values (0, 2, 1);
+insert into soporteasignado (id, id_desarrollador, id_soporte) values (0, 2, 2);
+insert into soporteasignado (id, id_desarrollador, id_soporte) values (0, 2, 3);
+insert into soporteasignado (id, id_desarrollador, id_soporte) values (0, 2, 4);
+insert into soporteasignado (id, id_desarrollador, id_soporte) values (0, 2, 5);
