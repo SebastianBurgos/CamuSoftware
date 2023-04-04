@@ -25,7 +25,7 @@ public class ModuleChoiceController {
 
     @FXML
     void registrar(ActionEvent event) {
-
+    	aplicacion.showRegister();
     }
 
     @FXML
@@ -35,7 +35,7 @@ public class ModuleChoiceController {
 
     @FXML
     void ingresarModuloPQRS(ActionEvent event) {
-    	aplicacion.showRegister();
+    	aplicacion.showGestionPQRSAsignadas();
     }
 
     @FXML

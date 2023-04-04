@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.GestionPQRSAsignadasController">
+   <children>
+      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="472.0" prefWidth="676.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
+         <top>
+            <AnchorPane prefHeight="37.0" prefWidth="676.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="319.0" layoutY="7.0" prefHeight="39.0" prefWidth="676.0" text="Gestión de Solicitudes Asignadas" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button layoutX="624.0" layoutY="6.0" mnemonicParsing="false" onAction="#volver" text="Volver" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="6.0" />
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="284.0" prefWidth="280.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableSoporteAsignado" layoutX="40.0" layoutY="41.0" prefHeight="285.0" prefWidth="280.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="columnIdSoporte" prefWidth="25.0" text="id" />
+                      <TableColumn fx:id="columnEstadoSoporte" prefWidth="103.0" text="estado" />
+                        <TableColumn fx:id="columnDetallesSoporte" prefWidth="97.0" text="detalles" />
+                        <TableColumn fx:id="columnAsuntoSoporte" prefWidth="75.0" text="asunto" />
+                        <TableColumn prefWidth="75.0" text="fecha_solicitud" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane prefHeight="282.0" prefWidth="357.0" BorderPane.alignment="CENTER">
+               <children>
+                  <BorderPane layoutX="135.0" layoutY="41.0" prefHeight="282.0" prefWidth="396.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <TableView fx:id="tableImplementacionesSoporte" prefHeight="158.0" prefWidth="359.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="columnIdImplementacion" prefWidth="36.0" text="id" />
+                            <TableColumn fx:id="columnEspecificacionImplementacion" prefWidth="124.0" text="especificacion" />
+                              <TableColumn fx:id="columnFechaImplementacion" prefWidth="76.0" text="fecha_implementacion" />
+                              <TableColumn fx:id="columnHorasImplementacion" prefWidth="56.0" text="horas" />
+                              <TableColumn fx:id="columnEstadoImplementacion" prefWidth="66.0" text="estado" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <left>
+                        <Separator orientation="VERTICAL" prefHeight="238.0" prefWidth="37.0" BorderPane.alignment="CENTER" />
+                     </left>
+                     <bottom>
+                        <BorderPane prefHeight="133.0" prefWidth="396.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="38.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <center>
+                              <AnchorPane prefHeight="137.0" prefWidth="358.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutY="10.0" text="Especificacion:" />
+                                    <TextField fx:id="txtEspecificacion" layoutX="86.0" layoutY="6.0" prefHeight="25.0" prefWidth="269.0" />
+                                    <Label layoutY="39.0" text="Fecha:" />
+                                    <DatePicker fx:id="dateFechaImplementacion" layoutX="39.0" layoutY="36.0" prefHeight="25.0" prefWidth="117.0" />
+                                    <Label layoutX="165.0" layoutY="40.0" text="Horas invertidas:" />
+                                    <TextField fx:id="txtHorasImplementacion" layoutX="274.0" layoutY="36.0" prefHeight="25.0" prefWidth="81.0" />
+                                    <TextField fx:id="txtEstadoImplementacion" layoutX="50.0" layoutY="66.0" prefHeight="25.0" prefWidth="305.0" />
+                                    <Label layoutX="-2.0" layoutY="70.0" text="Estado:" />
+                                    <Button layoutX="13.0" layoutY="100.0" mnemonicParsing="false" onAction="#agregarImplementacion" prefHeight="19.0" prefWidth="59.0" text="Agregar" />
+                                    <Button layoutX="136.0" layoutY="99.0" mnemonicParsing="false" onAction="#eliminarImplementacion" prefHeight="20.0" prefWidth="59.0" text="Eliminar" />
+                                    <Button layoutX="265.0" layoutY="97.0" mnemonicParsing="false" onAction="#actualizarImplementacion" prefHeight="22.0" prefWidth="68.0" text="Actualizar" />
+                                 </children>
+                              </AnchorPane>
+                           </center>
+                        </BorderPane>
+                     </bottom>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <BorderPane prefHeight="141.0" prefWidth="676.0" BorderPane.alignment="CENTER">
+               <top>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="110.0" prefWidth="676.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="277.0" layoutY="3.0" text="Soporte" />
+                        <Label layoutX="14.0" layoutY="26.0" text="Respuesta:" />
+                        <TextArea fx:id="txtRespuestaSoporte" layoutX="85.0" layoutY="24.0" prefHeight="41.0" prefWidth="580.0" />
+                        <Label layoutX="14.0" layoutY="77.0" text="Estado:" />
+                        <TextField fx:id="txtEstadoSoporte" layoutX="86.0" layoutY="76.0" prefHeight="25.0" prefWidth="153.0" />
+                        <TextField fx:id="txtObservacionesSoporte" layoutX="340.0" layoutY="75.0" prefHeight="27.0" prefWidth="326.0" />
+                        <Label layoutX="246.0" layoutY="77.0" text="Observaciones:" />
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <AnchorPane prefHeight="40.0" prefWidth="676.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="14.0" layoutY="12.0" text="Información:" />
+                        <Label layoutX="90.0" layoutY="8.0" prefHeight="21.0" prefWidth="417.0" />
+                        <Button layoutX="523.0" layoutY="6.0" mnemonicParsing="false" onAction="#confirmarCambios" prefHeight="25.0" prefWidth="145.0" text="Confirmar Cambios" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

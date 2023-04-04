@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import application.controller.GestionPQRSAsignadasController;
 import application.controller.ModuleChoiceController;
 import application.model.Implementacion;
 import application.model.Soporte;
@@ -74,14 +75,17 @@ public class MainApp extends Application {
      * Muestra la pantalla inicial para iniciar el módulo de soporte
      */
     public void showModuleChoice() {
-        try {
+    	try {
             // Carga del fxml de eleccion de modulo.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/ModuleChoiceView.fxml"));
-            AnchorPane login = (AnchorPane) loader.load();
+            AnchorPane moduleChoice = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            rootLayout.setCenter(login);
+
+            primaryStage.setMinHeight(380);
+            primaryStage.setMinWidth(660);
+            rootLayout.setCenter(moduleChoice);
 
             // Give the controller access to the main app.
             ModuleChoiceController controller = loader.getController();
@@ -104,6 +108,27 @@ public class MainApp extends Application {
 	public void showRegister() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void showGestionPQRSAsignadas(){
+
+		try {
+            // Carga del fxml de eleccion de modulo.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/GestionPQRSAsignadasView.fxml"));
+            AnchorPane login = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            primaryStage.setMinHeight(580);
+            primaryStage.setMinWidth(720);
+            rootLayout.setCenter(login);
+
+            // Give the controller access to the main app.
+            GestionPQRSAsignadasController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	/**
