@@ -1,7 +1,10 @@
 package application;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import org.apache.commons.codec.digest.DigestUtils;
 
 import application.controller.DetallePQRSController;
 import application.controller.GestionPQRSAsignadasController;
@@ -106,7 +109,9 @@ public class MainApp extends Application {
      * Metodo para abrir la ventana de login
      */
 	public void showLogin() {
-
+        String passwd = "Aqui va la contraseña";
+        String encriptMD5=DigestUtils.md5Hex(passwd);
+        System.out.println("md5:"+encriptMD5);
 	}
 
 	/**
@@ -195,6 +200,11 @@ public class MainApp extends Application {
 
 	public PQRS obtenerPQRSSoporte(int idSoporte) {
 		return SoporteService.obtenerPQRSSoporte(idSoporte);
+	}
+
+	public void agregarImplementacionSoporteSeleccionado(int idSoporteSeleccionado,
+			String especificacion, LocalDate fecha, int horas, String estado) {
+		ImplementacionService.agregarImplementacionSoporteSeleccionado(idSoporteSeleccionado, especificacion, fecha, horas, estado);
 	}
 
 }

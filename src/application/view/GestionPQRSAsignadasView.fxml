@@ -66,7 +66,7 @@
                                     <Label layoutY="10.0" text="Especificacion:" />
                                     <TextField fx:id="txtEspecificacion" layoutX="86.0" layoutY="6.0" prefHeight="25.0" prefWidth="269.0" />
                                     <Label layoutY="39.0" text="Fecha:" />
-                                    <DatePicker fx:id="dateFechaImplementacion" layoutX="39.0" layoutY="36.0" prefHeight="25.0" prefWidth="117.0" />
+                                    <DatePicker fx:id="dateFechaImplementacion" layoutX="39.0" layoutY="36.0" prefHeight="25.0" prefWidth="117.0" showWeekNumbers="true" />
                                     <Label layoutX="165.0" layoutY="40.0" text="Horas invertidas:" />
                                     <TextField fx:id="txtHorasImplementacion" layoutX="274.0" layoutY="36.0" prefHeight="25.0" prefWidth="81.0" />
                                     <TextField fx:id="txtEstadoImplementacion" layoutX="50.0" layoutY="66.0" prefHeight="25.0" prefWidth="305.0" />

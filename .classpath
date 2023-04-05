@@ -5,5 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.4/mysql-connector-java-5.1.4-bin.jar"/>
 	<classpathentry kind="lib" path="javamaillibreria/javax.mail.jar"/>
+	<classpathentry kind="lib" path="libreria-password-encript-md5/commons-codec-1.15.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

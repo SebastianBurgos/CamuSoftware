@@ -24,7 +24,9 @@ public class GestionPQRSAsignadasController {
 	private MainApp aplicacion;
 	private int idDesarrolladorIngresado;
 	private Soporte soporteSeleccionado;
+	private Implementacion implementacionSeleccionada;
 	private ObservableList<Soporte> lstSoportesData = FXCollections.observableArrayList();
+	private ObservableList<Implementacion> lstImplementacionesSoporteData = FXCollections.observableArrayList();
 
 	@FXML
     private ResourceBundle resources;
@@ -44,7 +46,7 @@ public class GestionPQRSAsignadasController {
     @FXML
     private TableColumn<Date, Soporte> columnFechaSolicitudSoporte;
     @FXML
-    private TableColumn<String, Implementacion> columnHorasImplementacion;
+    private TableColumn<Integer, Implementacion> columnHorasImplementacion;
     @FXML
     private TableColumn<Date, Implementacion> columnFechaImplementacion;
     @FXML
@@ -79,10 +81,47 @@ public class GestionPQRSAsignadasController {
 
     @FXML
     void agregarImplementacion(ActionEvent event) {
-
+    	if (camposImplementacionRellenos() == true && soporteSeleccionado!=null) {
+    		int idSoporteSeleccionado = this.soporteSeleccionado.getId();
+    		aplicacion.agregarImplementacionSoporteSeleccionado(idSoporteSeleccionado,
+    				txtEspecificacion.getText(), dateFechaImplementacion.getValue(), Integer.parseInt(txtHorasImplementacion.getText()),
+    				txtEstadoImplementacion.getText());
+    		getLstImplementacionesSoporteSeleccionado(idSoporteSeleccionado);
+    		limpiarCamposImplementacion();
+		}else{
+			JOptionPane.showMessageDialog(null, "Rellene todos los campos y seleccione un soporte");
+		}
     }
 
-    @FXML
+    private void limpiarCamposImplementacion() {
+		txtEspecificacion.setText("");
+		txtEstadoImplementacion.setText("");
+		txtHorasImplementacion.setText("");
+		dateFechaImplementacion.setValue(null);
+	}
+
+	private boolean camposImplementacionRellenos() {
+		if (txtEspecificacion.getText().isEmpty()) {
+			return false;
+		}
+		if (dateFechaImplementacion.getValue() == null) {
+			return false;
+		}
+		if (txtHorasImplementacion.getText().isEmpty()) {
+			return false;
+		}
+		try {
+			Integer.parseInt(txtHorasImplementacion.getText());
+		} catch (Exception e) {
+			return false;
+		}
+		if (txtEstadoImplementacion.getText().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	@FXML
     void eliminarImplementacion(ActionEvent event) {
 
     }
@@ -114,20 +153,60 @@ public class GestionPQRSAsignadasController {
 		columnFechaSolicitudSoporte.setCellValueFactory( new PropertyValueFactory<>("fecha_creacion") );
 		columnUltimaActualizacionSoporte.setCellValueFactory( new PropertyValueFactory<>("fecha_ultima_actualizacion") );
 
-		//Deteccion de elementos seleccionados
-		tableSoporteAsignado.getSelectionModel().selectedItemProperty().addListener( (observable, oldValue, newValue) ->
-			this.soporteSeleccionado = newValue);
+		//Inicializacion de columnas de la tabla de soportes asignados
+    	columnIdImplementacion.setCellValueFactory( new PropertyValueFactory<>("id") );
+		columnEstadoImplementacion.setCellValueFactory( new PropertyValueFactory<>("estado") );
+		columnEspecificacionImplementacion.setCellValueFactory( new PropertyValueFactory<>("especificacion") );
+		columnFechaImplementacion.setCellValueFactory( new PropertyValueFactory<>("fecha_implementacion") );
+		columnHorasImplementacion.setCellValueFactory( new PropertyValueFactory<>("horas_invertidas") );
+
+		//Deteccion de soporte seleccionado
+		tableSoporteAsignado.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+		    this.soporteSeleccionado = newValue;
+		    getLstImplementacionesSoporteSeleccionado(newValue.getId());
+		});
+
+		//Deteccion de implementacion seleccionada
+		tableImplementacionesSoporte.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+		   this.implementacionSeleccionada = newValue;
+		   if (implementacionSeleccionada!=null) {
+			   mostrarDatosImplementacionSeleccionada();
+		   }
+		});
     }
+
+    private void mostrarDatosImplementacionSeleccionada() {
+    	txtEspecificacion.setText(implementacionSeleccionada.getEspecificacion());
+    	txtEstadoImplementacion.setText(implementacionSeleccionada.getEstado());
+    	txtHorasImplementacion.setText(String.valueOf(implementacionSeleccionada.getHoras_invertidas()));
+    	dateFechaImplementacion.setValue(implementacionSeleccionada.getFecha_implementacion().toLocalDate());
+	}
+
+	/**
+     * Metodo que muestra las implementaciones del soporte seleccionado en la tabla de
+     * implementaciones
+     * @param newValue
+     */
+	private void getLstImplementacionesSoporteSeleccionado(int idSoporteSeleccionado) {
+		tableImplementacionesSoporte.getItems().clear();
+		lstImplementacionesSoporteData.clear();
+		lstImplementacionesSoporteData.addAll(aplicacion.listaImplementacionesSoporte(idSoporteSeleccionado));
+		tableImplementacionesSoporte.setItems(lstImplementacionesSoporteData);
+		tableImplementacionesSoporte.refresh();
+	}
+
+	/**
+	 * Metodo que muestra la lista de soportes asignados al desarroolador logueado
+	 */
+	private void getLstSoportes() {
+		this.idDesarrolladorIngresado = 2;
+		lstSoportesData.addAll(aplicacion.listaSoportesAsignados(idDesarrolladorIngresado));
+		tableSoporteAsignado.setItems(lstSoportesData);
+	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.aplicacion = mainApp;
 
 		getLstSoportes();
-	}
-
-	private void getLstSoportes() {
-		this.idDesarrolladorIngresado = 2;
-		lstSoportesData.addAll(aplicacion.listaSoportesAsignados(idDesarrolladorIngresado));
-		tableSoporteAsignado.setItems(lstSoportesData);
 	}
 }

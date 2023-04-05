@@ -32,8 +32,6 @@ public class MySQLConnector {
 		try {
 			//Conexion a la base de datos -------------------------
 			conexion = DriverManager.getConnection(URL,USER,PASSWORD);
-
-			System.out.println("Conexión exitosa con DB: "+DBNAME);
 		} catch (SQLException e) {
 			System.out.println("Error en la conexión con DB: "+DBNAME);
 			e.printStackTrace();
