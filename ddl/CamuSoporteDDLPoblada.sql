@@ -15,6 +15,9 @@ CREATE TABLE `Usuario` (
 	PRIMARY KEY (`id`)
 );
 
+ALTER TABLE usuario
+ADD CONSTRAINT unico_email UNIQUE (email);
+
 CREATE TABLE `EstadoDesarrollador` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`estado` VARCHAR(20) NOT NULL,
@@ -34,6 +37,9 @@ CREATE TABLE `Desarrollador` (
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_estado`) REFERENCES EstadoDesarrollador(`id`)
 );
+
+ALTER TABLE desarrollador
+ADD CONSTRAINT unico_email UNIQUE (email);
 
 CREATE TABLE `Modulo` (
 	`id` INT NOT NULL AUTO_INCREMENT,

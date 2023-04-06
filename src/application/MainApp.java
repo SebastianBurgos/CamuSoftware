@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
+import application.controller.AsignacionPQRSController;
 import application.controller.DetallePQRSController;
+import application.controller.EnvioPQRSController;
 import application.controller.GestionPQRSAsignadasController;
+import application.controller.LoginController;
 import application.controller.ModuleChoiceController;
 import application.model.PQRS;
 import application.model.Implementacion;
@@ -16,9 +17,11 @@ import application.model.Plataforma;
 import application.model.Soporte;
 import application.model.TipoPQRS;
 import application.model.Usuario;
+import application.services.DesarrolladorService;
 import application.services.ImplementacionService;
 import application.services.SoporteAsignadoService;
 import application.services.SoporteService;
+import application.services.UsuarioService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -39,7 +42,7 @@ public class MainApp extends Application {
 
         cargarIcono();
         initRootLayout();
-        showModuleChoice();
+        showModuleChoice(null, null, 0);
     }
 
 	/**
@@ -83,8 +86,11 @@ public class MainApp extends Application {
 
     /**
      * Muestra la pantalla inicial para iniciar el módulo de soporte
+     * @param email
+     * @param rol
+     * @param id_desarrollador
      */
-    public void showModuleChoice() {
+    public void showModuleChoice(String rol, String email, int id) {
     	try {
             // Carga del fxml de eleccion de modulo.
             FXMLLoader loader = new FXMLLoader();
@@ -99,7 +105,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             ModuleChoiceController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, rol, email, id);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,20 +115,34 @@ public class MainApp extends Application {
      * Metodo para abrir la ventana de login
      */
 	public void showLogin() {
-        String passwd = "Aqui va la contraseña";
-        String encriptMD5=DigestUtils.md5Hex(passwd);
-        System.out.println("md5:"+encriptMD5);
+		try {
+            // Carga del fxml de eleccion de modulo.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/LoginView.fxml"));
+            AnchorPane moduleChoice = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+
+            primaryStage.setMinHeight(400);
+            primaryStage.setMinWidth(580);
+            primaryStage.setMaxHeight(400);
+            primaryStage.setMaxWidth(580);
+            rootLayout.setCenter(moduleChoice);
+
+            // Give the controller access to the main app.
+            LoginController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
-	/**
-	 * Metodo para abrir la ventana de registro
-	 */
 	public void showRegister() {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void showGestionPQRSAsignadas(){
+	public void showGestionPQRSAsignadas(int id_desarrollador, String email){
 
 		try {
             // Carga del fxml de eleccion de modulo.
@@ -137,7 +157,7 @@ public class MainApp extends Application {
 
             // Give the controller access to the main app.
             GestionPQRSAsignadasController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, id_desarrollador, email);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -164,6 +184,46 @@ public class MainApp extends Application {
             controller.setMainApp(this, idSoporte);
 
             dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+
+	public void showEnvioPQRS(String email_usuario_ingresado) {
+		try {
+            // Carga del fxml de eleccion de modulo.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/EnvioPQRSView.fxml"));
+            AnchorPane gestionPQRS = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            primaryStage.setMinHeight(540);
+            primaryStage.setMinWidth(780);
+            rootLayout.setCenter(gestionPQRS);
+
+            // Give the controller access to the main app.
+            EnvioPQRSController controller = loader.getController();
+            controller.setMainApp(this, email_usuario_ingresado);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+
+	public void showAsignacionPQRS(String email_asignador_ingresado) {
+		try {
+            // Carga del fxml de eleccion de modulo.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/AsignacionPQRSView.fxml"));
+            AnchorPane gestionPQRS = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            primaryStage.setMinHeight(620);
+            primaryStage.setMinWidth(1000);
+            rootLayout.setCenter(gestionPQRS);
+
+            // Give the controller access to the main app.
+            AsignacionPQRSController controller = loader.getController();
+            controller.setMainApp(this, email_asignador_ingresado);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -205,6 +265,19 @@ public class MainApp extends Application {
 	public void agregarImplementacionSoporteSeleccionado(int idSoporteSeleccionado,
 			String especificacion, LocalDate fecha, int horas, String estado) {
 		ImplementacionService.agregarImplementacionSoporteSeleccionado(idSoporteSeleccionado, especificacion, fecha, horas, estado);
+	}
+
+	public boolean ingresarUsuario(String email, String password) {
+		return UsuarioService.ingresar(email, password);
+	}
+
+	public boolean ingresarDesarrollador(String email, String password) {
+		return DesarrolladorService.ingresar(email, password);
+
+	}
+
+	public int buscarDesarrolladorEmail(String email) {
+		return DesarrolladorService.buscarDesarrolladorEmail(email);
 	}
 
 }

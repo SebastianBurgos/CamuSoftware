@@ -10,11 +10,24 @@
 Label {
 		-fx-font-family: "Times New Roman";
          -fx-font-style: italic;
-         -fx-font-size: 18px;
+         -fx-font-size: 22px;
 }
 
 TextField {
-	-fx-background-color: #008287;
+	-fx-background-color: #4A4C4D;
+         -fx-border-color: #FFFFFF;
+         -fx-border-width: 2;
+         -fx-text-fill: #FFFFFF;
+         -fx-font-family: "Times New Roman";
+         -fx-font-style: italic;
+         -fx-font-size: 18px;
+         -fx-background-radius: 10 10 10 10;
+         -fx-border-radius: 10 10 10 10;
+}
+
+
+PasswordField {
+	-fx-background-color: #4A4C4D;
          -fx-border-color: #FFFFFF;
          -fx-border-width: 2;
          -fx-text-fill: #FFFFFF;
@@ -43,10 +56,11 @@ Button { -fx-background-color: #4A4C4D;
          -fx-text-fill: #FFFFFF;
          -fx-font-family: "Times New Roman";
          -fx-font-style: italic;
-         -fx-font-size: 22px;
+         -fx-font-size: 20px;
          -fx-background-radius: 10 10 10 10;
          -fx-border-radius: 10 10 10 10;
 }
+
 
 #autor { -fx-font-family: "Hervetica";
          -fx-text-fill: #FFFF00;

@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class GestionPQRSAsignadasController {
 	private MainApp aplicacion;
 	private int idDesarrolladorIngresado;
+	private String emailDesarrolladorIngresado;
 	private Soporte soporteSeleccionado;
 	private Implementacion implementacionSeleccionada;
 	private ObservableList<Soporte> lstSoportesData = FXCollections.observableArrayList();
@@ -142,7 +143,7 @@ public class GestionPQRSAsignadasController {
 
     @FXML
     void volver(ActionEvent event) {
-    	aplicacion.showModuleChoice();
+    	aplicacion.showModuleChoice("Desarrollador", emailDesarrolladorIngresado, idDesarrolladorIngresado);
     }
 
     @FXML
@@ -199,14 +200,15 @@ public class GestionPQRSAsignadasController {
 	 * Metodo que muestra la lista de soportes asignados al desarroolador logueado
 	 */
 	private void getLstSoportes() {
-		this.idDesarrolladorIngresado = 2;
 		lstSoportesData.addAll(aplicacion.listaSoportesAsignados(idDesarrolladorIngresado));
 		tableSoporteAsignado.setItems(lstSoportesData);
 	}
 
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(MainApp mainApp, int id_desarrollador_ingresado,
+			String email_desarrollador_ingresado) {
 		this.aplicacion = mainApp;
-
+		this.emailDesarrolladorIngresado = email_desarrollador_ingresado;
+		this.idDesarrolladorIngresado = id_desarrollador_ingresado;
 		getLstSoportes();
 	}
 }
