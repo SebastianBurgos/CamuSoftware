@@ -119,7 +119,91 @@ public class ImplementacionService {
 				e.printStackTrace();
 			}
 		}
+	}
 
+	public static void actualizarImplementacionSeleccionada(int idImplementacionSeleccionada,
+			int idSoporteSeleccionado, String especificacion, LocalDate fechaFX, int horas, String estado) {
+		MySQLConnector conector = new MySQLConnector();
+		Connection conexion = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		Date fecha = Date.valueOf(fechaFX);
+
+		try {
+			conexion = conector.conectar();
+			stm = conexion.createStatement();
+			String query = "UPDATE implementacion SET especificacion = ?, fecha_implementacion = ?, horas_invertidas = ?, estado = ? WHERE id = ?";
+
+			PreparedStatement pstmt = conexion.prepareStatement(query);
+
+			pstmt.setString(1, especificacion);
+			pstmt.setDate(2, fecha);
+			pstmt.setInt(3, horas);
+			pstmt.setString(4, estado);
+			pstmt.setInt(5, idImplementacionSeleccionada); // aquí deberías especificar el id del registro que quieres actualizar
+
+			JOptionPane.showMessageDialog(null, "Implementacion actualizada exitosamente, numero de columnas afectadas: "+pstmt.executeUpdate());
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (rset != null) {
+					rset.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (conexion != null) {
+					conexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public static void eliminarImplementacionSeleccionada(int idImplementacionSeleccionada) {
+		MySQLConnector conector = new MySQLConnector();
+		Connection conexion = null;
+		Statement stm = null;
+		ResultSet rset = null;
+
+		try {
+			conexion = conector.conectar();
+			stm = conexion.createStatement();
+			String query = "DELETE FROM implementacion WHERE id = ?";
+
+			PreparedStatement pstmt = conexion.prepareStatement(query);
+
+			pstmt.setInt(1, idImplementacionSeleccionada);
+
+			JOptionPane.showMessageDialog(null, "Implementacion eliminada exitosamente, numero de columnas afectadas: "+pstmt.executeUpdate());
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (rset != null) {
+					rset.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (conexion != null) {
+					conexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

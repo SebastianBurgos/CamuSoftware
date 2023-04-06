@@ -43,6 +43,9 @@ public class MainApp extends Application {
         cargarIcono();
         initRootLayout();
         showModuleChoice(null, null, 0);
+
+// Descomentar para prueba funcional rapida de gestion pqrs
+//        showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
     }
 
 	/**
@@ -147,12 +150,12 @@ public class MainApp extends Application {
 		try {
             // Carga del fxml de eleccion de modulo.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/GestionPQRSAsignadasView.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/GestionSolicitudes.fxml"));
             AnchorPane gestionPQRS = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            primaryStage.setMinHeight(530);
-            primaryStage.setMinWidth(720);
+            primaryStage.setMinHeight(680);
+            primaryStage.setMinWidth(1025);
             rootLayout.setCenter(gestionPQRS);
 
             // Give the controller access to the main app.
@@ -242,6 +245,22 @@ public class MainApp extends Application {
 		return ImplementacionService.listaImplementacionesSoporte(id_soporte);
 	}
 
+	public void agregarImplementacionSoporteSeleccionado(int idSoporteSeleccionado,
+			String especificacion, LocalDate fecha, int horas, String estado) {
+		ImplementacionService.agregarImplementacionSoporteSeleccionado(idSoporteSeleccionado,
+				especificacion, fecha, horas, estado);
+	}
+
+	public void actualizarImplementacionSeleccionada(int idImplementacionSeleccionada, int idSoporteSeleccionado,
+			String especificacionNew, LocalDate fechaNew, int horasNew, String estadoNew) {
+		ImplementacionService.actualizarImplementacionSeleccionada(idImplementacionSeleccionada, idSoporteSeleccionado,
+				especificacionNew, fechaNew, horasNew, estadoNew);
+	}
+
+	public void eliminarImplementacionSeleccionada(int idImplementacionSeleccionada) {
+		ImplementacionService.eliminarImplementacionSeleccionada(idImplementacionSeleccionada);
+	}
+
 	public Usuario obtenerUsuarioSoporte(int idSoporte) {
 		return SoporteService.obtenerUsuario(idSoporte);
 	}
@@ -262,11 +281,6 @@ public class MainApp extends Application {
 		return SoporteService.obtenerPQRSSoporte(idSoporte);
 	}
 
-	public void agregarImplementacionSoporteSeleccionado(int idSoporteSeleccionado,
-			String especificacion, LocalDate fecha, int horas, String estado) {
-		ImplementacionService.agregarImplementacionSoporteSeleccionado(idSoporteSeleccionado, especificacion, fecha, horas, estado);
-	}
-
 	public boolean ingresarUsuario(String email, String password) {
 		return UsuarioService.ingresar(email, password);
 	}
@@ -278,6 +292,10 @@ public class MainApp extends Application {
 
 	public int buscarDesarrolladorEmail(String email) {
 		return DesarrolladorService.buscarDesarrolladorEmail(email);
+	}
+
+	public void agregarRespuestaSoporte(int idSoporteSeleccionado, String respuesta, String estadoNew) {
+		SoporteService.agregarRespuestaSoporte(idSoporteSeleccionado, respuesta, estadoNew);
 	}
 
 }

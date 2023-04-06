@@ -60,7 +60,7 @@ public class GestionPQRSAsignadasController {
     private TableColumn<String, Soporte> columnEstadoSoporte;
 
     @FXML
-    private TextField txtObservacionesSoporte;
+    private TextArea txtObservacionesSoporte;
     @FXML
     private TextField txtHorasImplementacion;
     @FXML
@@ -71,16 +71,48 @@ public class GestionPQRSAsignadasController {
     private TextArea txtRespuestaSoporte;
     @FXML
     private TextField txtEstadoSoporte;
+    @FXML
+    private TextField lblInformacion;
 
     @FXML
     private DatePicker dateFechaImplementacion;
 
     @FXML
     void confirmarCambios(ActionEvent event) {
-
+    	if (verificarCamposSoporte() == true && soporteSeleccionado != null) {
+    		int idSoporteSeleccionado = this.soporteSeleccionado.getId();
+    		aplicacion.agregarRespuestaSoporte(idSoporteSeleccionado,
+    				txtRespuestaSoporte.getText(), txtEstadoSoporte.getText());
+    		cambiarInformacionSoporte(txtEstadoSoporte.getText());
+    		getLstSoportes();
+    		limpiarCamposSoporte();
+		}else{
+			JOptionPane.showMessageDialog(null, "Seleccione un soporte y rellene los campos obligatorios (respuesta y estado)");
+		}
     }
 
-    @FXML
+    private void limpiarCamposSoporte() {
+		txtEstadoSoporte.setText("");
+		txtRespuestaSoporte.setText("");
+		txtObservacionesSoporte.setText("");
+		lblInformacion.setText("");
+	}
+
+	private void cambiarInformacionSoporte(String text) {
+		lblInformacion.setText(text);
+	}
+
+	private boolean verificarCamposSoporte() {
+		if (txtRespuestaSoporte.getText().isEmpty()) {
+			return false;
+		}
+		if (txtEstadoSoporte.getText().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+
+	@FXML
     void agregarImplementacion(ActionEvent event) {
     	if (camposImplementacionRellenos() == true && soporteSeleccionado!=null) {
     		int idSoporteSeleccionado = this.soporteSeleccionado.getId();
@@ -90,7 +122,7 @@ public class GestionPQRSAsignadasController {
     		getLstImplementacionesSoporteSeleccionado(idSoporteSeleccionado);
     		limpiarCamposImplementacion();
 		}else{
-			JOptionPane.showMessageDialog(null, "Rellene todos los campos y seleccione un soporte");
+			JOptionPane.showMessageDialog(null, "seleccione un soporte, rellene todos los campos e \ningrese un numero valido de horas");
 		}
     }
 
@@ -124,12 +156,32 @@ public class GestionPQRSAsignadasController {
 
 	@FXML
     void eliminarImplementacion(ActionEvent event) {
-
+		if (soporteSeleccionado!=null && implementacionSeleccionada != null) {
+			int idSoporteSeleccionado = this.soporteSeleccionado.getId();
+			int idImplementacionSeleccionada = this.implementacionSeleccionada.getId();
+			aplicacion.eliminarImplementacionSeleccionada(idImplementacionSeleccionada);
+			getLstImplementacionesSoporteSeleccionado(idSoporteSeleccionado);
+    		limpiarCamposImplementacion();
+		}else{
+			JOptionPane.showMessageDialog(null, "seleccione una implementacion, "
+					+ "rellene todos los campos e \ningrese un numero valido de horas");
+		}
     }
 
     @FXML
     void actualizarImplementacion(ActionEvent event) {
-
+    	if (camposImplementacionRellenos() == true && soporteSeleccionado!=null && implementacionSeleccionada != null) {
+    		int idSoporteSeleccionado = this.soporteSeleccionado.getId();
+    		int idImplementacionSeleccionada = this.implementacionSeleccionada.getId();
+    		aplicacion.actualizarImplementacionSeleccionada(idImplementacionSeleccionada, idSoporteSeleccionado,
+    				txtEspecificacion.getText(), dateFechaImplementacion.getValue(), Integer.parseInt(txtHorasImplementacion.getText()),
+    				txtEstadoImplementacion.getText());
+    		getLstImplementacionesSoporteSeleccionado(idSoporteSeleccionado);
+    		limpiarCamposImplementacion();
+		}else{
+			JOptionPane.showMessageDialog(null, "seleccione una implementacion, "
+					+ "rellene todos los campos e \ningrese un numero valido de horas");
+		}
     }
 
     @FXML
@@ -165,6 +217,7 @@ public class GestionPQRSAsignadasController {
 		tableSoporteAsignado.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 		    this.soporteSeleccionado = newValue;
 		    getLstImplementacionesSoporteSeleccionado(newValue.getId());
+		    limpiarCamposImplementacion();
 		});
 
 		//Deteccion de implementacion seleccionada
@@ -176,7 +229,7 @@ public class GestionPQRSAsignadasController {
 		});
     }
 
-    private void mostrarDatosImplementacionSeleccionada() {
+	private void mostrarDatosImplementacionSeleccionada() {
     	txtEspecificacion.setText(implementacionSeleccionada.getEspecificacion());
     	txtEstadoImplementacion.setText(implementacionSeleccionada.getEstado());
     	txtHorasImplementacion.setText(String.valueOf(implementacionSeleccionada.getHoras_invertidas()));

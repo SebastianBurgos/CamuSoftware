@@ -2,9 +2,14 @@ package application.services;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.JOptionPane;
 
 import application.model.PQRS;
 import application.model.Modulo;
@@ -327,6 +332,64 @@ public class SoporteService {
 		}
 
 		return pqrsEncontrada;
+	}
+
+	public static void agregarRespuestaSoporte(int idSoporteSeleccionado, String respuesta, String estadoNew) {
+		Soporte soporteEncontrado = obtenerSoporte(idSoporteSeleccionado);
+		MySQLConnector conector = new MySQLConnector();
+		Connection conexion = null;
+		Statement stm = null;
+		ResultSet rset = null;
+
+		Date fecha_actualizacion = Date.valueOf(LocalDate.now());
+		long diferencia = fecha_actualizacion.getTime() - soporteEncontrado.getFecha_creacion().getTime();
+        long dias_respuesta = TimeUnit.DAYS.convert(diferencia, TimeUnit.MILLISECONDS);
+
+		try {
+			conexion = conector.conectar();
+			stm = conexion.createStatement();
+			String query = "UPDATE soporte SET respuesta = ?, estado = ?, fecha_ultima_actualizacion = ?, tiempo_respuesta = ? WHERE id = ?";
+
+			PreparedStatement pstmt = conexion.prepareStatement(query);
+
+			pstmt.setString(1, respuesta);
+			pstmt.setString(2, estadoNew);
+			pstmt.setDate(3, fecha_actualizacion);
+			pstmt.setString(4, dias_respuesta+" dias");
+			pstmt.setInt(5, idSoporteSeleccionado);
+
+			JOptionPane.showMessageDialog(null, "Respuesta guardada y estado actualizado exitosamente, numero de columnas afectadas: "+pstmt.executeUpdate());
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (rset != null) {
+					rset.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (conexion != null) {
+					conexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		enviarNotificacionSoporte(idSoporteSeleccionado, respuesta, estadoNew);
+	}
+
+	public static void enviarNotificacionSoporte(int idSoporteSeleccionado, String respuesta, String estadoNew) {
+		Usuario usuario = obtenerUsuario(idSoporteSeleccionado);
+		String email = usuario.getEmail();
+		String asunto = "Actualización sobre el estado de su PQRS";
+		String cuerpo = "El soporte de su PQRS a cambiado de estado a: "+estadoNew+"."
+				+ "\n"+respuesta;
+		EmailService.enviarEmail(email, asunto, cuerpo);
 	}
 
 }
