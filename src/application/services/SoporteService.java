@@ -385,10 +385,13 @@ public class SoporteService {
 
 	public static void enviarNotificacionSoporte(int idSoporteSeleccionado, String respuesta, String estadoNew) {
 		Usuario usuario = obtenerUsuario(idSoporteSeleccionado);
+		PQRS pqrs = obtenerPQRSSoporte(idSoporteSeleccionado);
 		String email = usuario.getEmail();
 		String asunto = "Actualización sobre el estado de su PQRS";
-		String cuerpo = "El soporte de su PQRS a cambiado de estado a: "+estadoNew+"."
-				+ "\n"+respuesta;
+		String cuerpo = "Estimado "+usuario.getNombre()+",el soporte de su PQRS ha cambiado de estado a: "+estadoNew+"."
+				+ "\nCon respecto al soporte realizado por usted el día: "+pqrs.getFecha_solicitud().toString()+""
+				+ "\nSolicitud: \""+pqrs.getDetalles()+"\" "
+				+ "\nRespuesta: "+respuesta;
 		EmailService.enviarEmail(email, asunto, cuerpo);
 	}
 
