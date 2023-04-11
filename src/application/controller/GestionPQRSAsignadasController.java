@@ -254,6 +254,7 @@ public class GestionPQRSAsignadasController {
 	 */
 	private void getLstSoportes() {
 		lstSoportesData.addAll(aplicacion.listaSoportesAsignados(idDesarrolladorIngresado));
+		tableSoporteAsignado.getItems().clear();
 		tableSoporteAsignado.setItems(lstSoportesData);
 	}
 
