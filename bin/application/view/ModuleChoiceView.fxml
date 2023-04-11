@@ -28,8 +28,7 @@
                <children>
                   <Pane layoutX="7.0" layoutY="28.0" prefHeight="318.0" prefWidth="379.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button layoutX="199.0" layoutY="40.0" mnemonicParsing="false" onAction="#registrar" prefHeight="45.0" prefWidth="154.0" text="Registrarse" />
-                        <Button layoutX="22.0" layoutY="40.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="45.0" prefWidth="154.0" text="Ingresar" />
+                        <Button layoutX="22.0" layoutY="40.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="45.0" prefWidth="331.0" text="Ingresar" />
                         <Button fx:id="btnSoporte" disable="true" layoutX="24.0" layoutY="106.0" mnemonicParsing="false" onAction="#ingresarModuloPQRS" prefHeight="70.0" prefWidth="331.0" text="Soporte y Mantenimiento" />
                         <Pane layoutX="25.0" layoutY="191.0" prefHeight="113.0" prefWidth="331.0">
                            <children>
