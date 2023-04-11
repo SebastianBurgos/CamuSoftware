@@ -102,7 +102,7 @@ CREATE TABLE `Soporte` (
 	`fecha_ultima_actualizacion` DATETIME NOT NULL,
 	`tiempo_respuesta` VARCHAR(50) NULL,
 	`observaciones` VARCHAR(100) NULL,
-	`respuesta` VARCHAR(100) NULL,
+	`respuesta` VARCHAR(1000) NULL,
 	PRIMARY KEY (`id`),
 	FOREIGN KEY (`id_pqrs`) REFERENCES PQRS(`id`)
 );
@@ -150,7 +150,7 @@ insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, 
 insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (4, 'Sheff', 'FitzAlan', '79-424-7101', '+57 (739) 445-5991', 'sfitzalan3@clickbank.net', 'Suite 18', 'Granada', 'a87ff679a2f3e71d9181a67b7542122c');
 insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (5, 'Caprice', 'Kochlin', '64-650-3292', '+33 (340) 596-9185', 'ckochlin4@earthlink.net', 'Apt 1214', 'Nantes', 'e4da3b7fbbce2345d7772b0674a318d5');
 insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (6, 'Truman', 'Bovey', '83-093-1142', '+62 (730) 976-4501', 'tbovey5@imdb.com', 'Suite 32', 'Bader', '1679091c5a880faf6fb5e6087eb1b2dc');
-insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (7, 'Virgil', 'Denial', '72-808-3253', '+55 (200) 477-7644', 'vdenial6@reddit.com', 'Apt 653', 'Jutaí', '8f14e45fceea167a5a36dedd4bea2543');
+insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (7, 'Virgil', 'Denial', '72-808-3253', '+55 (200) 477-7644', 'juanc.palaciosr@uqvirtual.edu.co', 'Apt 653', 'Jutaí', '8f14e45fceea167a5a36dedd4bea2543');
 insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (8, 'Cyb', 'Kleinmintz', '28-742-6158', '+86 (209) 486-4807', 'ckleinmintz7@surveymonkey.com', 'Room 513', 'Nanhe', 'c9f0f895fb98ab9159f51fd0297e236d');
 insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (9, 'Philbert', 'Schneider', '85-433-3939', '+33 (751) 235-7571', 'pschneider8@marriott.com', 'PO Box 147', 'Montpellier', '45c48cce2e2d7fbdea1afc51c7c6ad26');
 insert into usuario (id, nombre, apellidos, cedula, telefono, email, direccion, ciudad_residencia, password) values (10, 'Ailbert', 'Ffoulkes', '83-297-1885', '+66 (506) 937-7144', 'affoulkes9@free.fr', 'PO Box 40683', 'Bang Ban', 'd3d9446802a44259755d38e6d163e820');

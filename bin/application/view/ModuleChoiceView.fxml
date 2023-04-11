@@ -33,9 +33,9 @@
                         <Button fx:id="btnSoporte" disable="true" layoutX="24.0" layoutY="106.0" mnemonicParsing="false" onAction="#ingresarModuloPQRS" prefHeight="70.0" prefWidth="331.0" text="Soporte y Mantenimiento" />
                         <Pane layoutX="25.0" layoutY="191.0" prefHeight="113.0" prefWidth="331.0">
                            <children>
-                              <Label fx:id="lblBienvenido" layoutX="107.0" layoutY="2.0" prefHeight="20.0" prefWidth="120.0" text="Bienvenido:" visible="false" />
-                              <Label fx:id="lblUsuarioIngresado" layoutX="123.0" layoutY="45.0" prefHeight="20.0" prefWidth="194.0" />
-                              <Label fx:id="lblRolUsuarioIngresado" layoutX="12.0" layoutY="44.0" prefHeight="25.0" prefWidth="97.0" />
+                              <Label fx:id="lblBienvenido" layoutX="107.0" layoutY="2.0" prefHeight="20.0" prefWidth="120.0" text="Bienvenido" visible="false" />
+                              <Label fx:id="lblUsuarioIngresado" layoutX="23.0" layoutY="74.0" prefHeight="25.0" prefWidth="295.0" />
+                              <Label fx:id="lblRolUsuarioIngresado" layoutX="10.0" layoutY="44.0" prefHeight="25.0" prefWidth="312.0" style="-fx-alignment: center;" textAlignment="CENTER" />
                            </children>
                         </Pane>
                      </children>
