@@ -22,23 +22,23 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button layoutX="709.0" layoutY="522.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="229.0" text="Finalizar Asignacion" />
+            <Button layoutX="709.0" layoutY="522.0" mnemonicParsing="false" onAction="#finalizarAsignacion" prefHeight="41.0" prefWidth="229.0" text="Finalizar Asignacion" />
             <ImageView fitHeight="120.0" fitWidth="104.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
-            <TableView layoutX="134.0" layoutY="81.0" prefHeight="172.0" prefWidth="713.0">
+            <TableView fx:id="tableSolicitudes" layoutX="134.0" layoutY="81.0" prefHeight="172.0" prefWidth="713.0">
               <columns>
-                <TableColumn prefWidth="55.0" text="ID" />
-                <TableColumn prefWidth="95.0" text="Detalles" />
-                  <TableColumn prefWidth="75.0" text="Asunto" />
-                  <TableColumn prefWidth="75.0" text="Fecha" />
-                  <TableColumn prefWidth="75.0" text="Estado" />
-                  <TableColumn prefWidth="75.0" text="Tipo" />
-                  <TableColumn prefWidth="75.0" text="Usuario" />
-                  <TableColumn prefWidth="75.0" text="Modulo" />
-                  <TableColumn prefWidth="110.0" text="Plataforma" />
+                <TableColumn fx:id="columnSolicitudId" prefWidth="55.0" text="ID" />
+                <TableColumn fx:id="columnSolicitudDetalles" prefWidth="95.0" text="Detalles" />
+                  <TableColumn fx:id="columnSolicitudAsunto" prefWidth="75.0" text="Asunto" />
+                  <TableColumn fx:id="columnSolicitudFecha" prefWidth="75.0" text="Fecha" />
+                  <TableColumn fx:id="columnSolicitudEstado" prefWidth="75.0" text="Estado" />
+                  <TableColumn fx:id="columnSolicitudTipo" prefWidth="75.0" text="Tipo" />
+                  <TableColumn fx:id="columnSolicitudUsuario" prefWidth="75.0" text="Usuario" />
+                  <TableColumn fx:id="columnSolicitudModulo" prefWidth="75.0" text="Modulo" />
+                  <TableColumn fx:id="columnSolicitudPlataforma" prefWidth="110.0" text="Plataforma" />
               </columns>
             </TableView>
             <Separator layoutX="4.0" layoutY="270.0" prefHeight="12.0" prefWidth="971.0" />
@@ -47,21 +47,21 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="394.0" layoutY="313.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="191.0" text="Iniciar Asignacion" />
-            <Button layoutX="380.0" layoutY="369.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="219.0" text="Asignar Desarrollador" />
-            <Button layoutX="376.0" layoutY="428.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="229.0" text="Designar Desarrollador" />
+            <Button layoutX="394.0" layoutY="313.0" mnemonicParsing="false" onAction="#iniciarAsignacion" prefHeight="41.0" prefWidth="191.0" text="Iniciar Asignacion" />
+            <Button layoutX="380.0" layoutY="369.0" mnemonicParsing="false" onAction="#asignarDesarrollador" prefHeight="41.0" prefWidth="219.0" text="Asignar Desarrollador" />
+            <Button layoutX="367.0" layoutY="428.0" mnemonicParsing="false" onAction="#desasignarDesarrollador" prefHeight="41.0" prefWidth="245.0" text="Desasignar Desarrollador" />
             <Text fill="WHITE" layoutX="24.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacion de asignacion:" wrappingWidth="254.12890625">
                <font>
                   <Font name="Times New Roman Italic" size="22.0" />
                </font>
             </Text>
-            <TextField disable="true" layoutX="294.0" layoutY="522.0" prefHeight="41.0" prefWidth="219.0" />
-            <TableView layoutX="14.0" layoutY="313.0" prefHeight="172.0" prefWidth="342.0">
+            <TextField fx:id="labelInfoAsig" disable="true" layoutX="294.0" layoutY="522.0" prefHeight="41.0" prefWidth="219.0" text="Informacion" />
+            <TableView fx:id="tableDesarrolladores" layoutX="14.0" layoutY="313.0" prefHeight="172.0" prefWidth="342.0">
                <columns>
-                  <TableColumn prefWidth="41.0" text="ID" />
-                  <TableColumn prefWidth="93.0" text="Cedula" />
-                  <TableColumn prefWidth="126.0" text="Nombres" />
-                  <TableColumn text="Estado" />
+                  <TableColumn fx:id="columnIdDes" prefWidth="41.0" text="ID" />
+                  <TableColumn fx:id="columnCedulaDes" prefWidth="93.0" text="Cedula" />
+                  <TableColumn fx:id="columnNombreDes" prefWidth="126.0" text="Nombres" />
+                  <TableColumn fx:id="columnEstadoDes" text="Estado" />
                </columns>
             </TableView>
             <Text layoutX="123.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Desarrolladores">
@@ -74,12 +74,12 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <TableView layoutX="624.0" layoutY="313.0" prefHeight="172.0" prefWidth="342.0">
+            <TableView fx:id="tableDesAsignados" layoutX="624.0" layoutY="313.0" prefHeight="172.0" prefWidth="342.0">
                <columns>
-                  <TableColumn prefWidth="41.0" text="ID" />
-                  <TableColumn prefWidth="93.0" text="Cedula" />
-                  <TableColumn prefWidth="126.0" text="Nombres" />
-                  <TableColumn text="Estado" />
+                  <TableColumn fx:id="columnIdDesAsignado" prefWidth="41.0" text="ID" />
+                  <TableColumn fx:id="columnCedulaDesAsignado" prefWidth="93.0" text="Cedula" />
+                  <TableColumn fx:id="columnNombreDesAsignado" prefWidth="126.0" text="Nombres" />
+                  <TableColumn fx:id="columnEstadoDesAsignado" text="Estado" />
                </columns>
             </TableView>
             <Button layoutX="806.0" layoutY="11.0" mnemonicParsing="false" onAction="#volver" prefHeight="41.0" prefWidth="154.0" text="Salir" />

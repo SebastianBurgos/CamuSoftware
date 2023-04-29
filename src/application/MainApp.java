@@ -11,6 +11,7 @@ import application.controller.GestionPQRSAsignadasController;
 import application.controller.LoginController;
 import application.controller.ModuleChoiceController;
 import application.model.PQRS;
+import application.model.Desarrollador;
 import application.model.Implementacion;
 import application.model.Modulo;
 import application.model.Plataforma;
@@ -19,6 +20,7 @@ import application.model.TipoPQRS;
 import application.model.Usuario;
 import application.services.DesarrolladorService;
 import application.services.ImplementacionService;
+import application.services.PQRSService;
 import application.services.SoporteAsignadoService;
 import application.services.SoporteService;
 import application.services.UsuarioService;
@@ -237,6 +239,16 @@ public class MainApp extends Application {
 	 * @param id_desarrollador
 	 * @return
 	 */
+	
+	public ArrayList<PQRS> listaPQRS(){
+		return PQRSService.listaPQRS();
+	}
+	public ArrayList<Desarrollador> listaDesarrolladores(){
+		return DesarrolladorService.listaDesarrolladores();
+	}	
+	public ArrayList<Desarrollador> listaDesAsignados(int idPQRSSeleccionada){
+		return SoporteAsignadoService.listaDesarrolladoresSoportes(idPQRSSeleccionada);
+	}
 	public ArrayList<Soporte> listaSoportesAsignados(int id_desarrollador){
 		return SoporteAsignadoService.listaSoportesAsignados(id_desarrollador);
 	}
@@ -296,6 +308,12 @@ public class MainApp extends Application {
 
 	public void agregarRespuestaSoporte(int idSoporteSeleccionado, String respuesta, String estadoNew) {
 		SoporteService.agregarRespuestaSoporte(idSoporteSeleccionado, respuesta, estadoNew);
+	}
+	public void asignarSoporte(int idPQRSSeleccionado, int idDesarrollador) {
+		SoporteAsignadoService.asignarSoporte(idPQRSSeleccionado, idDesarrollador);
+	}
+	public void desasignarSoporte(int idPQRSSeleccionado, int idDesarrollador) {
+		SoporteAsignadoService.desasignarSoporte(idPQRSSeleccionado, idDesarrollador);
 	}
 
 }
