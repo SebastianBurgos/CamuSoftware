@@ -34,11 +34,6 @@ public class ModuleChoiceController {
     private Button btnSoporte;
 
     @FXML
-    void registrar(ActionEvent event) {
-//    	aplicacion.showRegister();
-    }
-
-    @FXML
     void ingresar(ActionEvent event) {
     	aplicacion.showLogin();
     }

@@ -140,11 +140,6 @@ public class MainApp extends Application {
         }
 	}
 
-	public void showRegister() {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void showGestionPQRSAsignadas(int id_desarrollador, String email){
 
 		try {
