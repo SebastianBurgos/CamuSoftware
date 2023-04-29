@@ -40,13 +40,13 @@ public class MainApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Camu Software");
 
-        cargarIcono();
-        initRootLayout();
-        showModuleChoice(null, null, 0);
-
-//        Descomentar para prueba funcional rapida de gestion pqrs
-//        showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
-    }
+		cargarIcono();
+		initRootLayout();
+		showModuleChoice(null, null, 0);
+		// Descomentar para prueba funcional rapida de gestion pqrs
+		// showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
+	}
+    
 
 	/**
 	 * Returns the main stage.
