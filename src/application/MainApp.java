@@ -44,8 +44,8 @@ public class MainApp extends Application {
         initRootLayout();
         showModuleChoice(null, null, 0);
 
-        // Descomentar para prueba funcional rapida de gestion pqrs
-        // showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
+//        Descomentar para prueba funcional rapida de gestion pqrs
+//        showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
     }
 
 	/**
