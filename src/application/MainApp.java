@@ -43,8 +43,7 @@ public class MainApp extends Application {
 
 		cargarIcono();
 		initRootLayout();
-		// showModuleChoice(null, null, 0);
-		showEnvioPQRS("sheddy0@reddit.com");
+		showModuleChoice(null, null, 0);
 		// Descomentar para prueba funcional rapida de gestion pqrs
 		// showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
 	}
