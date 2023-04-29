@@ -3,17 +3,20 @@ package application.controller;
 import application.MainApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 
 public class EnvioPQRSController {
 	private MainApp aplicacion;
 	private String email_usuario_ingresado;
 
-
-
-
-    @FXML
-    private ComboBox<String> cbTipoSolicitud;
+	/**
+	 * TODO
+	 *
+	 *
+	 * ACA PONGA TOOD LO DE SU CONTROLADOR Y LOS METODOS
+	 *
+	 *
+	 * @param mainApp
+	 */
 
     @FXML
     void volver(ActionEvent event) {
