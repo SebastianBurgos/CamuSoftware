@@ -19,6 +19,7 @@ import application.model.TipoPQRS;
 import application.model.Usuario;
 import application.services.DesarrolladorService;
 import application.services.ImplementacionService;
+import application.services.PQRSService;
 import application.services.SoporteAsignadoService;
 import application.services.SoporteService;
 import application.services.UsuarioService;
@@ -291,6 +292,11 @@ public class MainApp extends Application {
 
 	public void agregarRespuestaSoporte(int idSoporteSeleccionado, String respuesta, String estadoNew) {
 		SoporteService.agregarRespuestaSoporte(idSoporteSeleccionado, respuesta, estadoNew);
+	}
+
+	public void enviarSolicitud(String email, String cedula, String asunto, String detalle, int idTipoSolicitud,
+			int idPlataforma, int idModulo) {
+		PQRSService.crearPQRS(email,cedula,asunto,detalle,idTipoSolicitud,idPlataforma,idModulo);
 	}
 
 }
