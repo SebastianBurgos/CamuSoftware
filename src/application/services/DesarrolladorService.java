@@ -1,12 +1,15 @@
 package application.services;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import application.model.Desarrollador;
 import application.persistence.MySQLConnector;
 
 public class DesarrolladorService {
@@ -92,6 +95,57 @@ public class DesarrolladorService {
 		}
 
 		return valido;
+	}
+
+	public static ArrayList<Desarrollador> listaDesarrolladores() {
+		ArrayList<Desarrollador> listaDesarrolladores = new ArrayList<>();
+		MySQLConnector conector = new MySQLConnector();
+		Connection conexion = null;
+		Statement stm = null;
+		ResultSet rset = null;
+
+		try {
+			conexion = conector.conectar();
+			stm = conexion.createStatement();
+			rset = stm.executeQuery("SELECT * FROM DESARROLLADOR");
+
+			//Recorrer todos los datos obtenidos de la sentencia SQL
+			while (rset.next()) {
+				int id = rset.getInt(1);
+				int id_estado = rset.getInt(2);
+				String nombre = rset.getString(4);
+				String apellidos = rset.getString(5);
+				String cedula = rset.getString(3);
+				String telefono = rset.getString(6);
+				String email = rset.getString(7);
+				String direccion = rset.getString(8);
+				String password = rset.getString(9);
+
+				listaDesarrolladores.add(new Desarrollador(id, id_estado,nombre,apellidos,cedula,telefono,email,
+						direccion, password));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (rset != null) {
+					rset.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+				if (conexion != null) {
+					conexion.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		return listaDesarrolladores;
 	}
 
 }
