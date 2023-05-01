@@ -48,6 +48,12 @@ public class MainApp extends Application {
 
 //        Descomentar para prueba funcional rapida de gestion pqrs
 //        showGestionPQRSAsignadas(2, "erochelle1@guardian.co.uk");
+
+//      Descomentar para prueba funcional rapida de gestion pqrs
+//      showGestionPQRSAsignadas("sheddy0@reddit.com");  cedula:88-753-0263
+
+//      Descomentar para prueba funcional rapida de gestion pqrs
+//      showGestionPQRSAsignadas("asignador@gmail");
     }
 
 	/**
@@ -101,8 +107,6 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/ModuleChoiceView.fxml"));
             AnchorPane moduleChoice = (AnchorPane) loader.load();
-
-            // Set person overview into the center of root layout.
 
             primaryStage.setMinHeight(380);
             primaryStage.setMinWidth(660);
@@ -234,13 +238,13 @@ public class MainApp extends Application {
 	 * @param id_desarrollador
 	 * @return
 	 */
-	
+
 	public ArrayList<PQRS> listaPQRS(){
 		return PQRSService.listaPQRS();
 	}
 	public ArrayList<Desarrollador> listaDesarrolladores(){
 		return DesarrolladorService.listaDesarrolladores();
-	}	
+	}
 	public ArrayList<Desarrollador> listaDesAsignados(int idPQRSSeleccionada){
 		return SoporteAsignadoService.listaDesarrolladoresSoportes(idPQRSSeleccionada);
 	}

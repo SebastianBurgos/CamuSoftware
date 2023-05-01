@@ -27,7 +27,7 @@ public class AsignacionPQRSController {
 	private PQRS PQRSSeleccionado;
 	private Desarrollador desarrolladorSeleccionado;
 	private Desarrollador desAsignadoSeleccionado;
-	
+
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -52,7 +52,7 @@ public class AsignacionPQRSController {
     private TableColumn<String, PQRS> columnSolicitudId;
     @FXML
     private TableColumn<String, PQRS> columnSolicitudDetalles;
-   
+
     @FXML
     private TableView<Desarrollador> tableDesAsignados;
     @FXML
@@ -64,9 +64,9 @@ public class AsignacionPQRSController {
     @FXML
     private TableColumn<String, Desarrollador> columnEstadoDesAsignado;
 
-    
+
     @FXML
-    private TableView<Desarrollador> tableDesarrolladores;  
+    private TableView<Desarrollador> tableDesarrolladores;
     @FXML
     private TableColumn<Integer, Desarrollador> columnIdDes;
     @FXML
@@ -97,7 +97,7 @@ public class AsignacionPQRSController {
     		int idDesSeleccionado = this.desarrolladorSeleccionado.getId();
     		aplicacion.asignarSoporte(idPQRSSeleccionado,idDesSeleccionado );
     		getLstDesAsignadosSelecionado(idPQRSSeleccionado);
-    		
+
 		}else{
 			JOptionPane.showMessageDialog(null, "Seleccione una PQRS y Un desarrollador");
 		}
@@ -118,9 +118,9 @@ public class AsignacionPQRSController {
 
     @FXML
     void volver(ActionEvent event) {
-    	aplicacion.showModuleChoice("Usuario", email_asignador_ingresado, 0);
+    	aplicacion.showModuleChoice("Asignador", email_asignador_ingresado, 0);
     }
-    
+
     @FXML
     void initialize() {
     	//Inicializacion de columnas de la tabla de PQRS
@@ -151,7 +151,7 @@ public class AsignacionPQRSController {
     	//Deteccion de Desarrolldor
 		tableDesarrolladores.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 		    this.desarrolladorSeleccionado = newValue;
-		});		
+		});
     	//Deteccion de Desarrolldor asignado
 		tableDesAsignados.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 		    this.desAsignadoSeleccionado = newValue;
@@ -168,11 +168,11 @@ public class AsignacionPQRSController {
 		tableDesarrolladores.getItems().clear();
 		tableDesarrolladores.setItems(lstDesarrolladorData);
 	}
-	
+
 	private void getLstDesAsignadosSelecionado(int idPQRSSeleccionada) {
 		tableDesAsignados.getItems().clear();
 		lstDesarrolladorAsignadoData.clear();
-		lstDesarrolladorAsignadoData.addAll(aplicacion.listaDesAsignados(idPQRSSeleccionada));	
+		lstDesarrolladorAsignadoData.addAll(aplicacion.listaDesAsignados(idPQRSSeleccionada));
 		tableDesAsignados.setItems(lstDesarrolladorAsignadoData);
 		tableDesAsignados.refresh();
 	}

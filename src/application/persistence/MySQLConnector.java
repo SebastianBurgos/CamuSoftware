@@ -15,7 +15,7 @@ public class MySQLConnector {
 	//El siguiente parametro es el usuario, por dejecto root
 	private static final String USER = "root";
 	//El ultimo parametro es la contraseña de ese usuario que le pusimos cuando instalamos mysql
-	private static final String PASSWORD = "youkai";
+	private static final String PASSWORD = "1234";
 
 	static{
 		try{
